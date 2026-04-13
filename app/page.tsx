@@ -56,9 +56,14 @@ export default function ReviseAILandingPage() {
               <p className="text-xs text-slate-400">Study smarter, feel calmer.</p>
             </div>
           </div>
-          <button className="rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-2 text-sm text-slate-200 transition hover:border-slate-700 hover:bg-slate-900">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfIAY8falqW792-n_7X5dM6WDvMsL08y1Q1mIytIlNLUbq88w/viewform?usp=publish-editor"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-2 text-sm text-slate-200 transition hover:border-slate-700 hover:bg-slate-900"
+          >
             Join Early Access
-          </button>
+          </a>
         </header>
 
         <section className="grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
@@ -85,9 +90,12 @@ export default function ReviseAILandingPage() {
               >
                 Get Early Access
               </a>
-              <button className="rounded-2xl border border-slate-800 bg-slate-900/70 px-6 py-3 text-sm font-medium text-slate-200 transition hover:border-slate-700 hover:bg-slate-900">
+              <a
+                href="/demo"
+                className="rounded-2xl border border-slate-800 bg-slate-900/70 px-6 py-3 text-sm font-medium text-slate-200 transition hover:border-slate-700 hover:bg-slate-900"
+              >
                 See Demo
-              </button>
+              </a>
             </div>
 
             <div className="mt-10 grid max-w-lg grid-cols-3 gap-4 text-sm text-slate-300">
