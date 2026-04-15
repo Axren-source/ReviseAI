@@ -49,17 +49,6 @@ export default function ReviseAILandingPage() {
       </div>
 
       <main className="relative mx-auto w-full max-w-7xl px-6 pb-14 pt-8 md:px-10 lg:px-14">
-        <header className="fade-up flex flex-wrap items-center justify-end gap-4">
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfIAY8falqW792-n_7X5dM6WDvMsL08y1Q1mIytIlNLUbq88w/viewform?usp=publish-editor"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-2xl border border-slate-700/90 bg-slate-900/80 px-4 py-2 text-sm font-medium text-slate-100 transition hover:-translate-y-0.5 hover:border-blue-400/60 hover:text-white"
-          >
-            Join Early Access
-          </a>
-        </header>
-
         <section className="grid items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
           <div className="fade-up [animation-delay:80ms]">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-300/25 bg-blue-500/10 px-4 py-2 text-sm text-blue-100 backdrop-blur">

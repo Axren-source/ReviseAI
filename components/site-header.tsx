@@ -40,12 +40,14 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Link
-          href="/demo"
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfIAY8falqW792-n_7X5dM6WDvMsL08y1Q1mIytIlNLUbq88w/viewform?usp=publish-editor"
+          target="_blank"
+          rel="noopener noreferrer"
           className="rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-white"
         >
           Get Started
-        </Link>
+        </a>
       </div>
     </header>
   );
