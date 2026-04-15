@@ -51,11 +51,9 @@ export default function ReviseAILandingPage() {
       <main className="relative mx-auto w-full max-w-7xl px-6 pb-14 pt-8 md:px-10 lg:px-14">
         <header className="fade-up flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500/40 to-cyan-400/20 text-lg ring-1 ring-blue-300/40 backdrop-blur">
-              ✨
             </div>
             <div>
-              <p <img src="/icon.svg" alt="ReviseAI logo" className="h-10" />
+              <img src="/icon.svg" alt="ReviseAI logo" className="h-10" />
               <p className="text-xs text-slate-300">AI study partner for overwhelmed students.</p>
             </div>
           </div>
