@@ -49,13 +49,7 @@ export default function ReviseAILandingPage() {
       </div>
 
       <main className="relative mx-auto w-full max-w-7xl px-6 pb-14 pt-8 md:px-10 lg:px-14">
-        <header className="fade-up flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div>
-              <p className="text-lg font-semibold tracking-tight text-white">ReviseAI</p>
-              <p className="text-xs text-slate-300">AI study partner for overwhelmed students.</p>
-            </div>
-          </div>
+        <header className="fade-up flex flex-wrap items-center justify-end gap-4">
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSfIAY8falqW792-n_7X5dM6WDvMsL08y1Q1mIytIlNLUbq88w/viewform?usp=publish-editor"
             target="_blank"
