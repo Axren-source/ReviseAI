@@ -55,7 +55,7 @@ export default function ReviseAILandingPage() {
               ✨
             </div>
             <div>
-              <p className="text-lg font-semibold tracking-tight text-white">ReviseAI</p>
+              <p <img src="/icon.svg" alt="ReviseAI logo" className="h-10" />
               <p className="text-xs text-slate-300">AI study partner for overwhelmed students.</p>
             </div>
           </div>
