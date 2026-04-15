@@ -84,7 +84,6 @@ export default function ReviseAILandingPage() {
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
               ReviseAI turns messy notes into instant summaries, high-quality quizzes, and smart flashcards so you can study with structure, speed, and confidence.
             </p>
-
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfIAY8falqW792-n_7X5dM6WDvMsL08y1Q1mIytIlNLUbq88w/viewform?usp=publish-editor"
@@ -154,7 +153,7 @@ export default function ReviseAILandingPage() {
             </div>
           </div>
         </section>
-
+        
         <section className="fade-up [animation-delay:220ms] py-6">
           <div className="rounded-[28px] border border-slate-800 bg-slate-900/55 p-8 backdrop-blur md:p-10">
             <p className="text-sm font-medium uppercase tracking-[0.25em] text-blue-200/90">Why students love it</p>
