@@ -13,11 +13,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 md:px-10 lg:px-14">
         <Link href="/" className="flex items-center gap-2.5 text-white">
-          <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-blue-500/15 ring-1 ring-blue-300/30">
-            ✨
-          </span>
           <span>
-            <span className="block text-sm font-semibold">ReviseAI</span>
+            <span className="block text-sm font-semibold tracking-tight text-white">ReviseAI</span>
             <span className="block text-xs text-slate-400">Study smarter, feel calmer.</span>
           </span>
         </Link>
