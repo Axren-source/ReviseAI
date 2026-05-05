@@ -38,10 +38,7 @@ export default function ReviseAILandingPage() {
             <p className="mb-5 inline-flex rounded-full border border-violet-300/30 bg-violet-500/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-violet-100">
               Future-ready study workflow
             </p>
-            <h1 className="text-balance text-4xl font-semibold leading-tight md:text-6xl">
-              Premium AI learning for students who move fast.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200/90">
+            <p className="mb-5 inline-flex rounded-full border border-violet-300/30 bg-violet-500/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-violet-100">Future-ready study workflow</p>
               ReviseAI transforms class notes into executive-level summaries, dynamic quizzes,
               and intelligent flashcards with a product experience built like top-tier SaaS.
             </p>
