@@ -32,16 +32,23 @@ export default function ReviseAILandingPage() {
     <div className="relative min-h-screen overflow-hidden text-slate-100">
       <div className="hero-light" />
       <div className="hero-grid" />
+
       <main className="relative mx-auto w-full max-w-7xl px-6 pb-14 pt-10 md:px-10 lg:px-14">
         <section className="hero-card reveal grid items-center gap-12 rounded-[28px] border border-white/10 p-8 md:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:p-14">
           <div>
             <p className="mb-5 inline-flex rounded-full border border-violet-300/30 bg-violet-500/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-violet-100">
               Future-ready study workflow
             </p>
-            <p className="mb-5 inline-flex rounded-full border border-violet-300/30 bg-violet-500/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-violet-100">Future-ready study workflow</p>
+
+            <h1 className="text-balance text-4xl font-semibold leading-tight md:text-6xl">
+              Premium AI learning for students who move fast.
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200/90">
               ReviseAI transforms class notes into executive-level summaries, dynamic quizzes,
               and intelligent flashcards with a product experience built like top-tier SaaS.
             </p>
+
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="/demo"
@@ -50,12 +57,15 @@ export default function ReviseAILandingPage() {
                 Watch Demo
               </a>
             </div>
+
             <WaitlistForm />
           </div>
+
           <div className="floating-shell rounded-[24px] border border-white/10 bg-slate-950/60 p-5 backdrop-blur-xl">
             <div className="rounded-[18px] border border-white/10 bg-slate-900/70 p-5">
               <p className="text-xs uppercase tracking-[0.24em] text-cyan-200">Live workspace</p>
               <h2 className="mt-2 text-xl font-semibold">Exam Sprint Pack</h2>
+
               <div className="mt-6 space-y-3">
                 {features.slice(0, 3).map((feature) => (
                   <div
