@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { addToWaitlist } from "@/lib/waitlist-store";
+import { Resend } from "@/lib/resend-client";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 4;
 const MIN_FORM_FILL_TIME_MS = 1_200;
+const WAITLIST_SOURCE = "ReviseAI Website";
 const rateLimitMap = new Map<string, number[]>();
 
 function isValidEmail(email: string) {
@@ -31,28 +33,23 @@ async function sendAdminNotification({ email, createdAt }: { email: string; crea
   const notifyAddress = process.env.WAITLIST_NOTIFY_EMAIL;
 
   if (!resendKey || !fromEmail || !notifyAddress) {
+    console.warn("[waitlist] missing Resend env vars; skipping email notification");
     return;
   }
 
-  // Resend REST API call with environment-based credentials.
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [notifyAddress],
-      subject: "New ReviseAI Waitlist Signup",
-      html: `<p><strong>User email:</strong> ${email}</p><p><strong>Submission timestamp:</strong> ${createdAt}</p>`,
-    }),
-  });
+  const resend = new Resend(resendKey);
 
-  if (!response.ok) {
-    const details = await response.text();
-    throw new Error(`Resend API error: ${details}`);
-  }
+  await resend.emails.send({
+    from: fromEmail,
+    to: [notifyAddress],
+    subject: "New ReviseAI Waitlist Signup",
+    html: `
+      <h2>New waitlist signup</h2>
+      <p><strong>User email:</strong> ${email}</p>
+      <p><strong>Submission timestamp:</strong> ${createdAt}</p>
+      <p><strong>Source:</strong> ${WAITLIST_SOURCE}</p>
+    `,
+  });
 }
 
 export async function POST(request: Request) {
@@ -61,6 +58,7 @@ export async function POST(request: Request) {
     const ip = forwardedFor.split(",")[0]?.trim() || "unknown";
 
     if (isRateLimited(ip)) {
+      console.info(`[waitlist] rate limited ip=${ip}`);
       return NextResponse.json({ error: "Too many requests. Please try again in a minute." }, { status: 429 });
     }
 
@@ -68,14 +66,17 @@ export async function POST(request: Request) {
     const email = body.email?.trim().toLowerCase();
 
     if (body.website) {
+      console.warn(`[waitlist] honeypot triggered ip=${ip}`);
       return NextResponse.json({ error: "Spam detected." }, { status: 400 });
     }
 
     if (!body.startedAt || Date.now() - body.startedAt < MIN_FORM_FILL_TIME_MS) {
+      console.warn(`[waitlist] submit too fast ip=${ip}`);
       return NextResponse.json({ error: "Please submit the form again." }, { status: 400 });
     }
 
     if (!email || !isValidEmail(email)) {
+      console.warn(`[waitlist] invalid email payload ip=${ip}`);
       return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
     }
 
@@ -83,14 +84,16 @@ export async function POST(request: Request) {
     const result = await addToWaitlist({ email, createdAt });
 
     if (!result.added) {
+      console.info(`[waitlist] duplicate signup email=${email}`);
       return NextResponse.json({ error: "You already joined the waitlist with this email." }, { status: 409 });
     }
 
     await sendAdminNotification({ email, createdAt });
+    console.info(`[waitlist] signup stored + emailed email=${email} at=${createdAt}`);
 
     return NextResponse.json({ success: true, message: "You’re officially on the ReviseAI early access list." });
   } catch (error) {
-    console.error("Waitlist submission failed", error);
+    console.error("[waitlist] submission failed", error);
     return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 500 });
   }
 }
