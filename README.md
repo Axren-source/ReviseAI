@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ReviseAI
 
-## Getting Started
+Premium landing page + waitlist flow built with Next.js App Router.
 
-First, run the development server:
+## Waitlist System (Resend + Next.js API Route)
+
+When users submit the **Join Waitlist** form, the app:
+
+1. Validates the email format.
+2. Applies anti-spam checks (rate limit, honeypot, minimum fill time).
+3. Prevents duplicate emails.
+4. Stores signups in `data/waitlist.json` for future expansion.
+5. Sends an instant notification email to your inbox using Resend.
+
+### Files involved
+
+- `components/waitlist-form.tsx` – premium animated frontend form.
+- `app/api/waitlist/route.ts` – secure backend API route.
+- `lib/waitlist-store.ts` – local JSON storage + duplicate prevention.
+
+## Environment setup
+
+1. Copy example vars:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. In `.env.local`, set:
+
+   - `RESEND_API_KEY`: your real Resend API key.
+   - `WAITLIST_FROM_EMAIL`: verified sender in Resend.
+   - `WAITLIST_NOTIFY_EMAIL`: inbox to receive signup notifications.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open `http://localhost:3000` and submit the waitlist form.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repo to GitHub.
+2. Import the project in Vercel.
+3. In **Project Settings → Environment Variables**, add:
+   - `RESEND_API_KEY`
+   - `WAITLIST_FROM_EMAIL`
+   - `WAITLIST_NOTIFY_EMAIL`
+4. Deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+After deployment, the same API route (`/api/waitlist`) runs server-side in production.
+
+## Production notes
+
+- Keep `RESEND_API_KEY` server-only (never expose in client code).
+- Ensure `WAITLIST_FROM_EMAIL` is verified in Resend; otherwise send attempts fail.
+- Data persists in `data/waitlist.json` for the running instance. For durable multi-instance storage, migrate to a database later (e.g., Postgres).
